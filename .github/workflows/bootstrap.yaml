@@ -40,7 +40,9 @@ jobs:
 
             - name: Run terraform plan
               run: |
-                ./scripts/run-terraform.sh -c plan
+                if ${CURRENT_ENV}="bootstrap"
+                    ./scripts/run-terraform.sh -c plan
+                fi
         
             - name: Run terraform apply
               if: github.ref_name == 'master' && github.event_name == 'push'
