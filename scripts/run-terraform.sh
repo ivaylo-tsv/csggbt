@@ -25,12 +25,12 @@ if [ "$CHANGE" = "YES" ]
         echo -e "${GREEN}======= running terraform $cmd =======${NC}"
         echo -e "${GREEN}======================================${NC}"
 
-        terraform -chdir=environments/$CURRENT_ENV init
-        terraform -chdir=environments/$CURRENT_ENV plan -out terraform-plan.file
+        terraform -chdir=$CURRENT_ENV init
+        terraform -chdir=$CURRENT_ENV plan -out terraform-plan.file
 
         if [[ "$cmd" == "apply" ]] 
             then
-                terraform -chdir=environments/$CURRENT_ENV apply terraform-plan.file
+                terraform -chdir=$CURRENT_ENV apply terraform-plan.file
         fi
 
     else 
