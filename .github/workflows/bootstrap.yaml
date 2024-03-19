@@ -39,12 +39,9 @@ jobs:
                 done    
 
             - name: Run terraform plan
+              if: ${{ env.CURRENT_ENV == 'bootstrap' }}
               run: |
-                [[ ${CURRENT_ENV} == "bootstrap" ]]
                     ./scripts/run-terraform.sh -c plan
-                else 
-                    exit 0
-                fi
         
             - name: Run terraform apply
               if: github.ref_name == 'master' && github.event_name == 'push'
