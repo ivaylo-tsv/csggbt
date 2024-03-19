@@ -9,7 +9,7 @@ resource "aws_vpc" "csggbt-vpc" {
 
 resource "aws_subnet" "csggbt-subnet-public" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.1/24"
+  cidr_block              = "10.0.0.0/26"
   availability_zone       = "eu-west-1a"
   map_public_ip_on_launch = "true"
 
@@ -20,7 +20,7 @@ resource "aws_subnet" "csggbt-subnet-public" {
 
 resource "aws_subnet" "csggbt-subnet-private" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.2/24"
+  cidr_block              = "10.0.0.64/26"
   availability_zone       = "eu-west-1b"
   map_public_ip_on_launch = "false"
 
@@ -31,7 +31,7 @@ resource "aws_subnet" "csggbt-subnet-private" {
 
 resource "aws_subnet" "csggbt-subnet-database" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.3/24"
+  cidr_block              = "10.0.0.128/26"
   availability_zone       = "eu-west-1c"
   map_public_ip_on_launch = "false"
 
