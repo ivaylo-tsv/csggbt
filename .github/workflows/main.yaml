@@ -1,0 +1,13 @@
+name: "Main Workflow"
+
+on:
+    pull_request:
+      branches: ["master"]
+    push:
+      branches: ["master"]
+    workflow_dispatch:
+
+jobs: 
+    bootstrap: 
+        uses: ./.github/workflows/bootstrap.yaml
+        secrets: inherit 
