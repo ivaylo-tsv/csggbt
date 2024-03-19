@@ -35,12 +35,12 @@ jobs:
             - name: Detect changes
               run: |
                 for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                  ./scripts/detect-changes.sh -d $dir 
+                  ./scripts/detect-changes-bootstrap.sh -d $dir 
                 done    
 
             - name: Run terraform plan
               run: |
-                ./scripts/run-terraform.sh -c plan
+                    ./scripts/run-terraform.sh -c plan
         
             - name: Run terraform apply
               if: github.ref_name == 'master' && github.event_name == 'push'

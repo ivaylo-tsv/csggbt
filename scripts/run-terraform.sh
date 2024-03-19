@@ -19,7 +19,7 @@ while getopts ":c:" opt; do
     esac
 done
 
-if [ "$CHANGE" = "YES" ] 
+if [ "$CHANGE" = "YES" ]
     then
         echo -e "${GREEN}======================================${NC}"
         echo -e "${GREEN}======= running terraform $cmd =======${NC}"
