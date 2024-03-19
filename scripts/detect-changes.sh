@@ -19,7 +19,7 @@ while getopts ":d:" opt; do
     esac
 done
 
-if [[ "$cmd" == *"terraform/bootstrap"* ]] || [[ "$cmd" == *"terraform/main"* ]]
+if [[ "$cmd" == *"terraform/bootstrap"* ]]
     then
         echo -e "${GREEN}There was a change in bootstrap terraform folder"
         echo CHANGE=YES >> $GITHUB_ENV
