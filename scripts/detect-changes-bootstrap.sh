@@ -23,14 +23,10 @@ if [[ "$cmd" == *"terraform/bootstrap"* ]]
     then
         echo -e "${GREEN}There was a change in bootstrap terraform folder"
         echo CHANGE=YES >> $GITHUB_ENV
-        echo CURRENT_ENV="bootstrap" >> $GITHUB_ENV
-        exit 0    
-elif [[ "$cmd" == *"terraform/main"* ]]
-    then
-        echo -e "${GREEN}There was a change in main terraform folder"
-        echo CHANGE=YES >> $GITHUB_ENV
-        echo CURRENT_ENV="main" >> $GITHUB_ENV
+        echo CURRENT_ENV="terraform/bootstrap" >> $GITHUB_ENV
         exit 0 
+    else
+        echo CHANGE=NO >> $GITHUB_ENV   
 fi
 
 

@@ -2,6 +2,10 @@ name: "Bootstrap"
 
 on:
     workflow_call:
+        inputs:
+            ENV:
+                required: true
+                type: string
 
 permissions:
     id-token: write
@@ -35,11 +39,10 @@ jobs:
             - name: Detect changes
               run: |
                 for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                  ./scripts/detect-changes.sh -d $dir 
+                  ./scripts/detect-changes-bootstrap.sh -d $dir 
                 done    
 
             - name: Run terraform plan
-              if: ${{ env.CURRENT_ENV == 'bootstrap' }}
               run: |
                     ./scripts/run-terraform.sh -c plan
         
