@@ -35,6 +35,6 @@ if [ "$CHANGE" = "YES" ]
 
     else 
         echo -e "${GREEN}=========================================================${NC}"
-        echo -e "${GREEN}======== no changes made to $CURRENT_ENV exiting ========${NC}"
+        echo -e "${GREEN}======== no changes made, exiting =======================${NC}"
         echo -e "${GREEN}=========================================================${NC}"
 fi 
