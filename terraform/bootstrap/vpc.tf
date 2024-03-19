@@ -10,7 +10,7 @@ resource "aws_vpc" "csggbt-vpc" {
 resource "aws_subnet" "csggbt-subnet-public" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
   cidr_block              = "10.0.1.0/24"
-  availability_zone       = "a"
+  availability_zone       = "eu-west-1a"
   map_public_ip_on_launch = "true"
 
   tags = merge({
@@ -21,7 +21,7 @@ resource "aws_subnet" "csggbt-subnet-public" {
 resource "aws_subnet" "csggbt-subnet-private" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
   cidr_block              = "10.0.2.0/24"
-  availability_zone       = "b"
+  availability_zone       = "eu-west-1b"
   map_public_ip_on_launch = "false"
 
   tags = merge({
@@ -32,7 +32,7 @@ resource "aws_subnet" "csggbt-subnet-private" {
 resource "aws_subnet" "csggbt-subnet-database" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
   cidr_block              = "10.0.3.0/24"
-  availability_zone       = "c"
+  availability_zone       = "eu-west-1c"
   map_public_ip_on_launch = "false"
 
   tags = merge({
