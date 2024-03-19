@@ -40,8 +40,10 @@ jobs:
 
             - name: Run terraform plan
               run: |
-                if [[ ${CURRENT_ENV} == "bootstrap" ]]
+                [[ ${CURRENT_ENV} == "bootstrap" ]]
                     ./scripts/run-terraform.sh -c plan
+                else 
+                    exit 0
                 fi
         
             - name: Run terraform apply
