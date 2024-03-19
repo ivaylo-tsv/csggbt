@@ -3,3 +3,4 @@ resource "aws_vpc" "csggbt-vpc" {
 
   tags = var.tags
 }
+
