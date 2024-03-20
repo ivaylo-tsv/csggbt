@@ -52,3 +52,4 @@ resource "aws_internet_gateway" "csggbt-igw" {
     var.tags
 )
 }
+
