@@ -27,7 +27,7 @@ resource "aws_subnet" "csggbt-subnet-private-1" {
   map_public_ip_on_launch = "false"
 
   tags = merge({
-    Name = "csggbt-subnet-private"},
+    Name = "csggbt-subnet-private-1"},
     var.tags)
 }
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "csggbt-subnet-private-2" {
   map_public_ip_on_launch = "false"
 
   tags = merge({
-    Name = "csggbt-subnet-private"},
+    Name = "csggbt-subnet-private-2"},
     var.tags)
 }
 
