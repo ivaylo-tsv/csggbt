@@ -4,7 +4,7 @@ resource "aws_route_table" "csggbt-rt-public" {
   vpc_id = aws_vpc.csggbt-vpc.id
 
   route {
-    cidr_block = "10.0.0.0/26"
+    cidr_block = "10.0.0.0/24"
     gateway_id = aws_internet_gateway.csggbt-igw.id
   }
 
