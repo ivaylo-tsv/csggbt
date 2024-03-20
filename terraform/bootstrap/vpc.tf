@@ -64,3 +64,16 @@ resource "aws_internet_gateway" "csggbt-igw" {
   )
 }
 
+resource "aws_nat_gateway" "csggbt-nat-gw" {
+  allocation_id = aws_eip.csggbt-nat-gw-eip.id
+  subnet_id     = aws_subnet.csggbt-subnet-public.id
+
+  tags = merge(
+    { "Name" = "csggbt-nat-gw"},
+    var.tags
+    )
+}
+
+## Elastic IPs
+
+resource "aws_eip" "csggbt-nat-gw-eip" {}
