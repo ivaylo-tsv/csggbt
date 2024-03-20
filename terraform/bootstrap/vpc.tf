@@ -50,6 +50,6 @@ resource "aws_internet_gateway" "csggbt-igw" {
   tags = merge(
     { "Name" = "csggbt-igw"},
     var.tags
-)
+  )
 }
 
