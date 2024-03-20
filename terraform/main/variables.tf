@@ -6,3 +6,8 @@ variable "tags" {
     "region"  = "eu-west-1"
   }
 }
+
+variable "vpc_id" {
+  type = string
+  default = "vpc-024db5111bd5006f8"
+}
