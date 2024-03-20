@@ -1,4 +1,4 @@
-## Route tables 
+## Route tables
 
 resource "aws_route_table" "csggbt-rt-public" {
   vpc_id = aws_vpc.csggbt-vpc.id
@@ -12,4 +12,11 @@ resource "aws_route_table" "csggbt-rt-public" {
     { "Name": "csggbt-rt-public "},
     var.tags
   )
+}
+
+## Subnet associations
+
+resource "aws_route_table_association" "csggbt-subnet-association-public" {
+  subnet_id      = aws_subnet.csggbt-subnet-public.id
+  route_table_id = aws_route_table.csggbt-rt-public.id
 }
