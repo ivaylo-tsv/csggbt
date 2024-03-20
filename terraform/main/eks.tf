@@ -20,7 +20,7 @@ module "eks" {
   }
 
   vpc_id                   = var.vpc_id
-  subnet_ids               = [var.subnet_private]
+  subnet_ids               = [var.subnet_private-1, var.subnet_private-2]
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {

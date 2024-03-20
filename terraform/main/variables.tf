@@ -17,7 +17,12 @@ variable "subnet_public" {
   default = "subnet-0b9d140587548db27"
 }
 
-variable "subnet_private" {
+variable "subnet_private-1" {
   type = string
-  default = "subnet-0cb5796e0544e7840"
+  default = "subnet-0b0c7e360b15ad627"
+}
+
+variable "subnet_private-2" {
+  type = string
+  default = "subnet-053bf11a097d8f600"
 }
