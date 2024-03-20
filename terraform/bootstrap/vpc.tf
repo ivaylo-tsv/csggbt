@@ -20,14 +20,25 @@ resource "aws_subnet" "csggbt-subnet-public" {
     var.tags)
 }
 
-resource "aws_subnet" "csggbt-subnet-private" {
+resource "aws_subnet" "csggbt-subnet-private-1" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
   cidr_block              = "10.0.0.64/26"
   availability_zone       = "eu-west-1b"
   map_public_ip_on_launch = "false"
 
   tags = merge({
-    Name = "csggbt-subnet-private"},
+    Name = "csggbt-subnet-private-1"},
+    var.tags)
+}
+
+resource "aws_subnet" "csggbt-subnet-private-2" {
+  vpc_id                  = aws_vpc.csggbt-vpc.id
+  cidr_block              = "10.0.0.192/26"
+  availability_zone       = "eu-west-1c"
+  map_public_ip_on_launch = "false"
+
+  tags = merge({
+    Name = "csggbt-subnet-private-2"},
     var.tags)
 }
 
