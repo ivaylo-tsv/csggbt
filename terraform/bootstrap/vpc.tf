@@ -1,3 +1,5 @@
+## VPC & Subnets
+
 resource "aws_vpc" "csggbt-vpc" {
   cidr_block = "10.0.0.0/24"
 
@@ -38,4 +40,15 @@ resource "aws_subnet" "csggbt-subnet-database" {
   tags = merge({
     Name = "csggbt-subnet-database"},
     var.tags)
+}
+
+## IGW & NAT GW
+
+resource "aws_internet_gateway" "csggbt-igw" {
+  vpc_id = aws_vpc.csggbt-vpc.id
+
+  tags = merge(
+    { "Name" = "csggbt-igw"},
+    var.tags
+)
 }
