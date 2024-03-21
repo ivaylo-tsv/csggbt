@@ -24,9 +24,8 @@ if [[ "$cmd" in *"terraform/main"* ]]
         echo -e "${GREEN}There was a change in main terraform folder"
         echo CHANGE=YES >> $GITHUB_ENV
         echo CURRENT_ENV="terraform/main" >> $GITHUB_ENV
+        echo $CHANGE
         exit 0 
     else    
         echo CHANGE=NO >> $GITHUB_ENV
 fi
-
-echo $CHANGE
