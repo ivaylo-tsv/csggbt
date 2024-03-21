@@ -29,3 +29,5 @@ if [[ "$cmd" == *"terraform/main"* ]]
     else    
         echo CHANGE=NO >> $GITHUB_ENV
 fi
+
+echo $CHANGE
