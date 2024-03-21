@@ -1,0 +1,14 @@
+apiVersion: v2
+name: argocd-umbrella
+description: Umbrella Chart which configure all core services for EKS cluster.
+version: 1.0.0
+dependencies:
+  - name: argo-cd
+    version: 5.52.0
+    repository: https://argoproj.github.io/argo-helm
+    alias: argocd
+    condition: argocd.enabled
+  - name: argocd-apps
+    repository: https://argoproj.github.io/argo-helm
+    version: 1.4.1
+    condition: argocd-apps.enabled

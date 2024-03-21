@@ -5,7 +5,7 @@ module "eks" {
   cluster_name    = "csggbt-eks-cluster"
   cluster_version = "1.29"
 
-  cluster_endpoint_public_access  = true
+  cluster_endpoint_public_access = true
 
   cluster_addons = {
     coredns = {
@@ -19,13 +19,8 @@ module "eks" {
     }
   }
 
-  vpc_id                   = var.vpc_id
-  subnet_ids               = [var.subnet_private-1, var.subnet_private-2]
-
-  # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = {
-    instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
-  }
+  vpc_id     = var.vpc_id
+  subnet_ids = [var.subnet_private-1, var.subnet_private-2]
 
   eks_managed_node_groups = {
     csggbt-eks-node-group = {
@@ -35,6 +30,7 @@ module "eks" {
 
       instance_types = ["t3.large"]
       capacity_type  = "ON_DEMAND"
+      ami_type       = "BOTTLEROCKET_x86_64"
     }
   }
 
@@ -42,26 +38,8 @@ module "eks" {
   # To add the current caller identity as an administrator
   enable_cluster_creator_admin_permissions = true
 
-#   access_entries = {
-#     # One access entry with a policy associated
-#     example = {
-#       kubernetes_groups = []
-#       principal_arn     = "arn:aws:iam::123456789012:role/something"
-
-#       policy_associations = {
-#         example = {
-#           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
-#           access_scope = {
-#             namespaces = ["default"]
-#             type       = "namespace"
-#           }
-#         }
-#       }
-#     }
-#   }
-
   tags = merge(
-    { "Name" : "csggbt-eks-cluster"},
+    { "Name" : "csggbt-eks-cluster" },
     var.tags
   )
 }
