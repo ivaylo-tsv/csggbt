@@ -21,7 +21,7 @@ argocd-apps:
     sources:
       - repoURL: git@github.com:ivaylo-tsv/csggbt.git
         targetRevision: HEAD
-        path: terraform/main/charts/test
+        path: terraform/main/helm/charts/test
     destination:
       server: https://kubernetes.default.svc
       namespace: default
@@ -39,7 +39,7 @@ argocd-apps:
     sources:
       - repoURL: git@github.com:ivaylo-tsv/csggbt.git
         targetRevision: HEAD
-        path: terraform/main/charts/grafana
+        path: terraform/main/helm/charts/grafana
     destination:
       server: https://kubernetes.default.svc
       namespace: default
