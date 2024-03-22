@@ -1,4 +1,5 @@
 #!/bin/bash
+bash -x 
 set -eo pipefail
 
 RED='\033[0;31m'
@@ -25,6 +26,4 @@ if [[ "$cmd" == *"terraform/main"* ]]
         echo CHANGE=YES >> $GITHUB_ENV
         echo CURRENT_ENV="terraform/main" >> $GITHUB_ENV
         exit 0 
-    else    
-        echo CHANGE=NO >> $GITHUB_ENV
 fi
