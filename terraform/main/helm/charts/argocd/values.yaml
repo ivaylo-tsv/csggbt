@@ -1,0 +1,24 @@
+argocd:
+  enabled: true 
+
+argocd-apps:
+  enabled: true
+  applications:
+  - name: test-app
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    project: default
+    sources:
+      - repoURL: 'git@github.com:ivaylo-tsv/csggbt.git'
+        targetRevision: HEAD
+        path: terrafirn/main/charts/test
+        destination:
+          server: 'https://596E7CFE14BBA2845105FA8B21FB6A47.gr7.eu-west-1.eks.amazonaws.com'
+          namespace: default
+        syncPolicy:
+          automated:
+            prune: false
+            selfHeal: true
+          syncOptions:
+          - CreateNamespace=true
