@@ -1,48 +1,48 @@
-name: "Main"
+# name: "Main"
 
-on:
-    workflow_call:
+# on:
+#     workflow_call:
 
-permissions:
-    id-token: write
-    contents: write
-    pull-requests: read
+# permissions:
+#     id-token: write
+#     contents: write
+#     pull-requests: read
 
-jobs:
-    run-terraform:
-        runs-on: 'ubuntu-22.04'
-        steps:
-            - name: "Configure AWS Credentials"
-              uses: aws-actions/configure-aws-credentials@v4.0.2
-              with:
-                role-to-assume: ${{ secrets.AWS_ROLE }}
-                aws-region: ${{ vars.AWS_REGION }}
+# jobs:
+#     run-terraform:
+#         runs-on: 'ubuntu-22.04'
+#         steps:
+#             - name: "Configure AWS Credentials"
+#               uses: aws-actions/configure-aws-credentials@v4.0.2
+#               with:
+#                 role-to-assume: ${{ secrets.AWS_ROLE }}
+#                 aws-region: ${{ vars.AWS_REGION }}
         
-            - name: Checkout code
-              uses: actions/checkout@v4.1.1
+#             - name: Checkout code
+#               uses: actions/checkout@v4.1.1
 
-            - name: "Install Terraform"
-              uses: hashicorp/setup-terraform@v3.0.0
-              with:
-                terraform_version: 1.6.1
+#             - name: "Install Terraform"
+#               uses: hashicorp/setup-terraform@v3.0.0
+#               with:
+#                 terraform_version: 1.6.1
 
-            - name: Get changed files
-              id: changed-files
-              uses: tj-actions/changed-files@5817a9efb0d7cc34b917d8146ea10b9f32044968
-              with:
-                dir_names: "true"
+#             - name: Get changed files
+#               id: changed-files
+#               uses: tj-actions/changed-files@5817a9efb0d7cc34b917d8146ea10b9f32044968
+#               with:
+#                 dir_names: "true"
                 
-            - name: Detect changes
-              run: |
-                for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                  ./scripts/detect-changes-main.sh -d $dir 
-                done    
+#             - name: Detect changes
+#               run: |
+#                 for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
+#                   ./scripts/detect-changes-main.sh -d $dir 
+#                 done    
 
-            - name: Run terraform plan
-              run: |
-                    ./scripts/run-terraform.sh -c plan
+#             - name: Run terraform plan
+#               run: |
+#                     ./scripts/run-terraform.sh -c plan
         
-            - name: Run terraform apply
-              if: github.ref_name == 'master' && github.event_name == 'push'
-              run: |
-                ./scripts/run-terraform.sh -c apply
+#             - name: Run terraform apply
+#               if: github.ref_name == 'master' && github.event_name == 'push'
+#               run: |
+#                 ./scripts/run-terraform.sh -c apply

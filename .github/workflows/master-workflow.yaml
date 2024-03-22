@@ -1,18 +1,18 @@
-name: "Master Workflow"
+# name: "Master Workflow"
 
-on:
-    pull_request:
-      branches: ["master"]
-    push:
-      branches: ["master"]
-    workflow_dispatch:
+# on:
+#     pull_request:
+#       branches: ["master"]
+#     push:
+#       branches: ["master"]
+#     workflow_dispatch:
 
-permissions: write-all
+# permissions: write-all
 
-jobs: 
-    bootstrap: 
-        uses: ./.github/workflows/bootstrap.yaml
-        secrets: inherit 
-    main:
-        uses: ./.github/workflows/main.yaml
-        secrets: inherit
+# jobs: 
+#     bootstrap: 
+#         uses: ./.github/workflows/bootstrap.yaml
+#         secrets: inherit 
+#     main:
+#         uses: ./.github/workflows/main.yaml
+#         secrets: inherit

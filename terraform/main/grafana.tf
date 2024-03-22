@@ -1,9 +1,9 @@
-# resource "kubernetes_namespace" "grafana" {
-#   metadata {
-#     name = "grafana"
-#   }
-#   depends_on = [module.eks]
-# }
+resource "kubernetes_namespace" "grafana" {
+  metadata {
+    name = "grafana"
+  }
+  depends_on = [module.eks]
+}
 
 # resource "helm_release" "grafana" {
 #   depends_on = [module.eks]
@@ -18,35 +18,4 @@
 #   lifecycle {
 #     ignore_changes = all
 #   }
-
-#   set {
-#     name  = "argo-cd.controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-#     value = module.iam_assumable_role_argocd.iam_role_arn
-#     type  = "string"
-#   }
-#   set {
-#     name  = "argo-cd.applicationSet.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-#     value = module.iam_assumable_role_argocd.iam_role_arn
-#     type  = "string"
-#   }
-
-#   set {
-#     name  = "argo-cd.server.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-#     value = module.iam_assumable_role_argocd.iam_role_arn
-#     type  = "string"
-#   }
-
-#   set {
-#     name  = "argo-cd.server.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-#     value = module.iam_assumable_role_argocd.iam_role_arn
-#     type  = "string"
-#   }
-
-#   set {
-#     name  = "argocd-apps.applicationsets[0].additionalAnnotations.helm\\.sh/hook"
-#     value = "post-install"
-#     type  = "string"
-#   }
 # }
-
-

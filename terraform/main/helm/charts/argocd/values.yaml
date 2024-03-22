@@ -1,24 +1,52 @@
 argocd:
   enabled: true 
 
+## Custom resource configuration
+crds:
+  # -- Install and upgrade CRDs
+  install: true
+  # -- Keep CRDs on chart uninstall
+  keep: true
+  # -- Annotations to be added to all CRDs
+  annotations: {}
+
 argocd-apps:
   enabled: true
   applications:
-  - name: test-app
+  - name: test-app-2
     namespace: argocd
     additionalLabels: {}
     additionalAnnotations: {}
     project: default
     sources:
-      - repoURL: 'git@github.com:ivaylo-tsv/csggbt.git'
+      - repoURL: git@github.com:ivaylo-tsv/csggbt.git
         targetRevision: HEAD
-        path: terrafirn/main/charts/test
-        destination:
-          server: 'https://596E7CFE14BBA2845105FA8B21FB6A47.gr7.eu-west-1.eks.amazonaws.com'
-          namespace: default
-        syncPolicy:
-          automated:
-            prune: false
-            selfHeal: true
-          syncOptions:
-          - CreateNamespace=true
+        path: terraform/main/charts/test
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    syncPolicy:
+      automated:
+        prune: false
+        selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+  - name: grafana
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    project: default
+    sources:
+      - repoURL: git@github.com:ivaylo-tsv/csggbt.git
+        targetRevision: HEAD
+        path: terraform/main/charts/grafana
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    syncPolicy:
+      automated:
+        prune: false
+        selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        
