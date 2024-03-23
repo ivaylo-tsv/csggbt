@@ -6,7 +6,7 @@ spec:
     # HIGHLIGHT
     repoURL: git@github.com:ivaylo-tsv/csggbt.git
     # HIGHLIGHT
-    targetRevision: main
+    targetRevision: HEAD
 # HIGHLIGHT
 applications:
   - name: assets
