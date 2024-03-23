@@ -1,34 +1,32 @@
 argocd:
   enabled: true 
-
-## Custom resource configuration
-crds:
-  # -- Install and upgrade CRDs
-  install: true
-  # -- Keep CRDs on chart uninstall
-  keep: true
-  # -- Annotations to be added to all CRDs
-  annotations: {}
+  repo:
+    url: "git@github.com:ivaylo-tsv/csggbt.git"
+    sshPrivateKeySecret:
+      # Name of the Kubernetes secret containing the SSH private key
+      name: argocd-ssh-key
+      # Key within the secret that contains the SSH private key
+      key: sshPrivateKey
 
 argocd-apps:
   enabled: true
   applications:
-  # - name: apps
-  #   namespace: argocd
-  #   additionalLabels: {}
-  #   additionalAnnotations: {}
-  #   project: default
-  #   sources:
-  #     - repoURL: git@github.com:ivaylo-tsv/csggbt.git
-  #       targetRevision: HEAD
-  #       path: terraform/main/helm/charts/apps
-  #   destination:
-  #     server: https://kubernetes.default.svc
-  #     namespace: default
-  #   syncPolicy:
-  #     automated:
-  #       prune: true
-  #       selfHeal: true
-  #       syncOptions:
-  #       - CreateNamespace=true
+  - name: apps
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    project: default
+    sources:
+      - repoURL: git@github.com:ivaylo-tsv/csggbt.git
+        targetRevision: HEAD
+        path: terraform/main/helm/charts/apps
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
         
