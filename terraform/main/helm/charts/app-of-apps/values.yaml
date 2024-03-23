@@ -1,0 +1,19 @@
+spec:
+  destination:
+    # HIGHLIGHT
+    server: https://kubernetes.default.svc
+  source:
+    # HIGHLIGHT
+    repoURL: git@github.com:ivaylo-tsv/csggbt.git
+    # HIGHLIGHT
+    targetRevision: main
+# HIGHLIGHT
+applications:
+  - name: assets
+  - name: carts
+  - name: catalog
+  - name: checkout
+  - name: orders
+  - name: other
+  - name: rabbitmq
+  - name: ui

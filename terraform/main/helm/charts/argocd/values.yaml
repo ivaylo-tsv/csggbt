@@ -13,40 +13,22 @@ crds:
 argocd-apps:
   enabled: true
   applications:
-  - name: test-app-2
-    namespace: argocd
-    additionalLabels: {}
-    additionalAnnotations: {}
-    project: default
-    sources:
-      - repoURL: git@github.com:ivaylo-tsv/csggbt.git
-        targetRevision: HEAD
-        path: terraform/main/helm/charts/test
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: default
-    syncPolicy:
-      automated:
-        prune: false
-        selfHeal: true
-        syncOptions:
-        - CreateNamespace=true
-  - name: grafana
-    namespace: argocd
-    additionalLabels: {}
-    additionalAnnotations: {}
-    project: default
-    sources:
-      - repoURL: git@github.com:ivaylo-tsv/csggbt.git
-        targetRevision: HEAD
-        path: terraform/main/helm/charts/grafana
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: default
-    syncPolicy:
-      automated:
-        prune: false
-        selfHeal: true
-        syncOptions:
-        - CreateNamespace=true
+  # - name: apps
+  #   namespace: argocd
+  #   additionalLabels: {}
+  #   additionalAnnotations: {}
+  #   project: default
+  #   sources:
+  #     - repoURL: git@github.com:ivaylo-tsv/csggbt.git
+  #       targetRevision: HEAD
+  #       path: terraform/main/helm/charts/apps
+  #   destination:
+  #     server: https://kubernetes.default.svc
+  #     namespace: default
+  #   syncPolicy:
+  #     automated:
+  #       prune: true
+  #       selfHeal: true
+  #       syncOptions:
+  #       - CreateNamespace=true
         
