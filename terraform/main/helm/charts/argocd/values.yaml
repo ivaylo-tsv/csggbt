@@ -11,7 +11,7 @@ argocd:
 argocd-apps:
   enabled: true
   applications:
-    - name: apps
+    apps:
       namespace: argocd
       additionalLabels: {}
       additionalAnnotations: {}

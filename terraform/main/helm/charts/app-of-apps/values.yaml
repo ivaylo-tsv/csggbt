@@ -1,13 +1,9 @@
 spec:
   destination:
-    # HIGHLIGHT
     server: https://kubernetes.default.svc
   source:
-    # HIGHLIGHT
     repoURL: git@github.com:ivaylo-tsv/csggbt.git
-    # HIGHLIGHT
     targetRevision: HEAD
-# HIGHLIGHT
 applications:
   - name: assets
   - name: carts
