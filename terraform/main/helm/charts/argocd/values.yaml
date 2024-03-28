@@ -13,15 +13,6 @@ argocd:
     extraArgs:
       - --insecure
 
-  repo:
-    url: "git@github.com:ivaylo-tsv/csggbt.git"
-    # sshPrivateKeySecret:
-    #   # Name of the Kubernetes secret containing the SSH private key
-    #   name: csggbt-repo-privatekey
-    #   # Key within the secret that contains the SSH private key
-    #   key: sshPrivateKey
-
-
 argocd-apps:
   enabled: false
   # applications: 
