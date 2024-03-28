@@ -5,8 +5,20 @@ resource "kubernetes_namespace" "argocd" {
   depends_on = [module.eks]
 }
 
+# resource "helm_release" "git_repo_secret" {
+#   depends_on = [module.eks]
+#   name = "csggbt-repo-privatekey"
+#   chart = "./helm/charts/csggbt-repo-privatekey"
+#   dependency_update = true
+
+#   values = []
+
+#   lifecycle {
+#     ignore_changes = all 
+#   }
+# }
+
 resource "helm_release" "argocd" {
-  depends_on = [module.eks]
 
   name              = "csggbt-argocd"
   chart             = "./helm/charts/argocd"
@@ -19,4 +31,3 @@ resource "helm_release" "argocd" {
     ignore_changes = all
   }
 }
-

@@ -35,5 +35,5 @@ terraform.rc
 **/.terraform.lock.hcl
 
 # # Chart archives
-# **/charts/*.tgz
-
+**/charts/**/charts
+**/charts/**/Chart.lock

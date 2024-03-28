@@ -1,32 +1,46 @@
 argocd:
   enabled: true 
+  dex:
+    enabled: false
+  notifications:
+    enabled: false
+  applicationSet:
+    enabled: false
+  crds:
+    install: true
+    keep: true 
+  server: 
+    extraArgs:
+      - --insecure
+
   repo:
     url: "git@github.com:ivaylo-tsv/csggbt.git"
-    sshPrivateKeySecret:
-      # Name of the Kubernetes secret containing the SSH private key
-      name: argocd-ssh-key
-      # Key within the secret that contains the SSH private key
-      key: sshPrivateKey
+    # sshPrivateKeySecret:
+    #   # Name of the Kubernetes secret containing the SSH private key
+    #   name: csggbt-repo-privatekey
+    #   # Key within the secret that contains the SSH private key
+    #   key: sshPrivateKey
+
 
 argocd-apps:
-  enabled: true
-  applications:
-    apps:
-      namespace: argocd
-      additionalLabels: {}
-      additionalAnnotations: {}
-      project: default
-      sources:
-        - repoURL: git@github.com:ivaylo-tsv/csggbt.git
-          targetRevision: HEAD
-          path: terraform/main/helm/charts/app-of-apps
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: default
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-          syncOptions:
-          - CreateNamespace=true
+  enabled: false
+  # applications: 
+  #   app-of-apps:
+  #     namespace: argocd
+  #     additionalLabels: {}
+  #     additionalAnnotations: {}
+  #     project: default
+  #     sources:
+  #       - repoURL: git@github.com:ivaylo-tsv/csggbt.git
+  #         targetRevision: HEAD
+  #         path: terraform/main/helm/charts/app-of-apps
+  #     destination:
+  #       server: https://kubernetes.default.svc
+  #       namespace: default
+  #     syncPolicy:
+  #       automated:
+  #         prune: true
+  #         selfHeal: true
+  #         syncOptions:
+  #         - CreateNamespace=true
         
