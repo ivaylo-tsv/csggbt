@@ -20,12 +20,11 @@ resource "helm_release" "argocd" {
 }
 
 
-resource "helm_release" "root-app" {
+resource "helm_release" "app-of-apps" {
   depends_on = [helm_release.argocd]
 
-  name              = "csggbt-root-app"
+  name              = "csggbt-app-of-apps"
   chart             = "../../helm/charts/root-app"
-  namespace         = "default"
   dependency_update = true
 
   values = []
