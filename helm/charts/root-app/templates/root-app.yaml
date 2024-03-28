@@ -6,7 +6,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ivaylo-tsv/csggbt.git
-    path: terraform/main/helm/charts/root-app/
+    path: helm/charts/root-app/
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
