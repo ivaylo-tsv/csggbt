@@ -14,24 +14,24 @@ argocd:
       - --insecure
 
 argocd-apps:
-  enabled: false
-  # applications: 
-  #   app-of-apps:
-  #     namespace: argocd
-  #     additionalLabels: {}
-  #     additionalAnnotations: {}
-  #     project: default
-  #     sources:
-  #       - repoURL: git@github.com:ivaylo-tsv/csggbt.git
-  #         targetRevision: HEAD
-  #         path: terraform/main/helm/charts/app-of-apps
-  #     destination:
-  #       server: https://kubernetes.default.svc
-  #       namespace: default
-  #     syncPolicy:
-  #       automated:
-  #         prune: true
-  #         selfHeal: true
-  #         syncOptions:
-  #         - CreateNamespace=true
+  enabled: true
+  applications: 
+    root-app:
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      project: default
+      sources:
+        - repoURL: https://github.com/ivaylo-tsv/csggbt.git
+          targetRevision: HEAD
+          path: helm/charts/root-app
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          syncOptions:
+          - CreateNamespace=true
         
