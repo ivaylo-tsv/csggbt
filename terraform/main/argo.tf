@@ -20,17 +20,17 @@ resource "helm_release" "argocd" {
 }
 
 
-# resource "helm_release" "root-app" {
-#   depends_on = [helm_release.argocd]
+resource "helm_release" "root-app" {
+  depends_on = [helm_release.argocd]
 
-#   name              = "csggbt-root-app"
-#   chart             = "../../helm/charts/root-app"
-#   namespace         = "default"
-#   dependency_update = true
+  name              = "csggbt-root-app"
+  chart             = "../../helm/charts/root-app"
+  namespace         = "default"
+  dependency_update = true
 
-#   values = []
+  values = []
 
-#   lifecycle {
-#     ignore_changes = all
-#   }
-# }
+  lifecycle {
+    ignore_changes = all
+  }
+}
