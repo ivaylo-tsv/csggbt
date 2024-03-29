@@ -1,3 +1,9 @@
 apiVersion: v2
 name: aws-lbc
 version: 1.0.0
+description: Umbrella Chart which configure all core services for EKS cluster.
+dependencies:
+  - name: aws-load-balancer-controller
+    version: 1.7.2
+    repository: https://aws.github.io/eks-charts
+    

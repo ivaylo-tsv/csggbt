@@ -1,11 +1,11 @@
-awsLoadBalancerController:
-  enabled: true
-  image:
-    repository: eks/aws-load-balancer-controller
-    tag: latest
-  namespace: kube-system
-  clusterName: my-cluster
-  serviceAccount:
-    create: false
-    name: aws-load-balancer-controller
+region: eu-west-1
+image:
+  repository: public.ecr.aws/eks/aws-load-balancer-controller
+  tag: v2.7.2
+namespace: kube-system
+clusterName: csggbt-eks-cluster
+serviceAccount:
+  create: false
+  name: aws-load-balancer-controller
+defaultTargetType: instance
 
