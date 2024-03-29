@@ -7,7 +7,7 @@ resource "kubernetes_namespace" "argocd" {
 
 resource "helm_release" "argocd" {
 
-  name              = "csggbt-argocd"
+  name              = "argo-cd"
   chart             = "../../helm/charts/argocd"
   namespace         = kubernetes_namespace.argocd.metadata[0].name
   dependency_update = true
@@ -23,7 +23,7 @@ resource "helm_release" "argocd" {
 resource "helm_release" "app-of-apps" {
   depends_on = [helm_release.argocd]
 
-  name              = "csggbt-app-of-apps"
+  name              = "app-of-apps"
   chart             = "../../helm/charts/root-app"
   dependency_update = true
 

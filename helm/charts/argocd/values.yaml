@@ -12,6 +12,9 @@ argocd:
   server: 
     extraArgs:
       - --insecure
+  repositories:
+    csggbt-repo:
+      url: https://github.com/ivaylo-tsv/csggbt.git
 
 argocd-apps:
   enabled: false
