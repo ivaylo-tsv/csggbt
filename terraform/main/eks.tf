@@ -43,3 +43,11 @@ module "eks" {
     var.tags
   )
 }
+
+resource "aws_eks_iam_service_account" "aws_load_balancer_controller" {
+  name = "aws-load-balancer-controller"
+  namespace = "kube-system"
+  cluster_name = module.eks.cluster_name
+  role_name = "AmazonEKSLoadBalancerControllerRole"
+  policy_arns = [aws_iam_policy.lbc.arn]
+}
