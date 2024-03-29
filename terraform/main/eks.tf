@@ -43,3 +43,30 @@ module "eks" {
     var.tags
   )
 }
+
+## Create a service account for AWS LBC:
+
+resource "kubernetes_service_account" "aws_load_balancer_controller_sa" {
+  metadata {
+    name      = "aws-load-balancer-controller"
+    namespace = "kube-system"
+
+    annotations = {
+      "eks.amazonaws.com/role-arn" = aws_iam_role.eks_load_balancer_controller_role.arn
+    }
+  }
+}
+
+resource "helm_release" "lbc" {
+
+  name              = "lbc"
+  chart             = "../../helm/charts/lbc"
+  namespace         = "kube-system"
+  dependency_update = true
+
+  values = []
+
+  lifecycle {
+    ignore_changes = all
+  }
+}

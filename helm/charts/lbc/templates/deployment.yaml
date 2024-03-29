@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-load-balancer-controller
+  namespace: {{ .Values.awsLoadBalancerController.namespace }}
+spec:
+  template:
+    spec:
+      serviceAccountName: {{ .Values.awsLoadBalancerController.serviceAccount.name }}
+      containers:
+        - name: aws-load-balancer-controller
+          image: "{{ .Values.awsLoadBalancerController.image.repository }}:{{ .Values.awsLoadBalancerController.image.tag }}"

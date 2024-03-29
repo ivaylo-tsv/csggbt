@@ -1,4 +1,4 @@
-## Create 'AmazonEKSLoadBalancerControllerRole' IAM Role for the AWS Load Balancer Controller (LBC)
+## Create 'AmazonEKSLoadBalancerControllerRole' IAM Role for the AWS Load Balancer Controller (LBC):
 
 resource "aws_iam_role" "eks_load_balancer_controller_role" {
   name               = "AmazonEKSLoadBalancerControllerRole"
