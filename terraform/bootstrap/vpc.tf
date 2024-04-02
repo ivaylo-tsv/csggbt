@@ -29,7 +29,6 @@ resource "aws_subnet" "csggbt-subnet-private-1" {
 
   tags = merge({
     Name = "csggbt-subnet-private-1"},
-    var.private_subnet_tags,
     var.tags)
 }
 
@@ -41,7 +40,6 @@ resource "aws_subnet" "csggbt-subnet-private-2" {
 
   tags = merge({
     Name = "csggbt-subnet-private-2"},
-    var.private_subnet_tags,
     var.tags)
 }
 
