@@ -2,16 +2,11 @@
 
 resource "aws_iam_role" "eks_load_balancer_controller_role" {
   name               = "AmazonEKSLoadBalancerControllerRole"
-  assume_role_policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement": [{
-      "Effect"   : "Allow",
-      "Principal": {
-        "Service": "eks.amazonaws.com"
-      },
-      "Action"   : "sts:AssumeRole"
-    }]
-  })
+  assume_role_policy = templatefile("../../policies/aws_lbc_iam_trust_policy.json",
+  {
+    EKS_OIDC = module.eks.oidc_provider_arn
+  }
+  )
 
   tags = merge(
     { "Name" : "csggbt-iam-policy-lbc" },

@@ -44,7 +44,7 @@ module "eks" {
   )
 }
 
-## Create a service account for AWS LBC:
+# Create a service account for AWS LBC:
 
 resource "kubernetes_service_account" "aws_load_balancer_controller_sa" {
   metadata {
@@ -58,6 +58,7 @@ resource "kubernetes_service_account" "aws_load_balancer_controller_sa" {
 }
 
 resource "helm_release" "lbc" {
+  depends_on = [ helm_release.argocd, kubernetes_service_account.aws_load_balancer_controller_sa]
 
   name              = "lbc"
   chart             = "../../helm/charts/lbc"
