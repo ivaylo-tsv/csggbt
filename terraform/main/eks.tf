@@ -20,7 +20,7 @@ module "eks" {
   }
 
   vpc_id     = var.vpc_id
-  subnet_ids = [var.subnet_private-1, var.subnet_private-2]
+  subnet_ids = [var.subnet-private-1, var.subnet-private-2]
 
   eks_managed_node_groups = {
     csggbt-eks-node-group = {
@@ -58,7 +58,7 @@ resource "kubernetes_service_account" "aws_load_balancer_controller_sa" {
 }
 
 resource "helm_release" "lbc" {
-  depends_on = [ helm_release.argocd, kubernetes_service_account.aws_load_balancer_controller_sa]
+  depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
 
   name              = "lbc"
   chart             = "../../helm/charts/lbc"

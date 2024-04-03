@@ -19,24 +19,24 @@ argocd:
       name: csggbt-repo 
 
 argocd-apps:
-  enabled: false
-  # applications: 
-  #   root-app:
-  #     namespace: argocd
-  #     additionalLabels: {}
-  #     additionalAnnotations: {}
-  #     project: default
-  #     sources:
-  #       - repoURL: https://github.com/ivaylo-tsv/csggbt.git
-  #         targetRevision: HEAD
-  #         path: helm/charts/root-app
-  #     destination:
-  #       server: https://kubernetes.default.svc
-  #       namespace: argocd
-  #     syncPolicy:
-  #       automated:
-  #         prune: true
-  #         selfHeal: true
-  #         syncOptions:
-  #         - CreateNamespace=true
+  enabled: true
+  applications: 
+    2048-game:
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      project: default
+      sources:
+        - repoURL: https://github.com/ivaylo-tsv/csggbt.git
+          targetRevision: HEAD
+          path: manifests/2048-game/
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          syncOptions:
+          - CreateNamespace=true
         

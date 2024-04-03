@@ -1,7 +1,7 @@
 ## VPC & Subnets
 
 resource "aws_vpc" "csggbt-vpc" {
-  cidr_block = "10.0.0.0/24"
+  cidr_block = "10.0.0.0/20"
 
   tags = merge(
     { "Name" : "csggbt-vpc" },
@@ -9,21 +9,33 @@ resource "aws_vpc" "csggbt-vpc" {
   )
 }
 
-resource "aws_subnet" "csggbt-subnet-public" {
+resource "aws_subnet" "csggbt-subnet-public-1" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.0/26"
+  cidr_block              = "10.0.0.0/24"
   availability_zone       = "eu-west-1a"
   map_public_ip_on_launch = "true"
 
   tags = merge({
-    Name = "csggbt-subnet-public"},
+    Name = "csggbt-subnet-public-1"},
+    var.public_subnet_tags,
+    var.tags)
+}
+
+resource "aws_subnet" "csggbt-subnet-public-2" {
+  vpc_id                  = aws_vpc.csggbt-vpc.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-west-1b"
+  map_public_ip_on_launch = "true"
+
+  tags = merge({
+    Name = "csggbt-subnet-public-2"},
     var.public_subnet_tags,
     var.tags)
 }
 
 resource "aws_subnet" "csggbt-subnet-private-1" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.64/26"
+  cidr_block              = "10.0.2.0/24"
   availability_zone       = "eu-west-1b"
   map_public_ip_on_launch = "false"
 
@@ -35,7 +47,7 @@ resource "aws_subnet" "csggbt-subnet-private-1" {
 
 resource "aws_subnet" "csggbt-subnet-private-2" {
   vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.192/26"
+  cidr_block              = "10.0.3.0/24"
   availability_zone       = "eu-west-1c"
   map_public_ip_on_launch = "false"
 
@@ -45,16 +57,6 @@ resource "aws_subnet" "csggbt-subnet-private-2" {
     var.tags)
 }
 
-resource "aws_subnet" "csggbt-subnet-database" {
-  vpc_id                  = aws_vpc.csggbt-vpc.id
-  cidr_block              = "10.0.0.128/26"
-  availability_zone       = "eu-west-1c"
-  map_public_ip_on_launch = "false"
-
-  tags = merge({
-    Name = "csggbt-subnet-database"},
-    var.tags)
-}
 
 ## IGW & NAT GW
 
@@ -69,7 +71,7 @@ resource "aws_internet_gateway" "csggbt-igw" {
 
 resource "aws_nat_gateway" "csggbt-nat-gw" {
   allocation_id = aws_eip.csggbt-nat-gw-eip.id
-  subnet_id     = aws_subnet.csggbt-subnet-public.id
+  subnet_id     = aws_subnet.csggbt-subnet-public-1.id
 
   tags = merge(
     { "Name" = "csggbt-nat-gw"},

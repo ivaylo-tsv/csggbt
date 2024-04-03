@@ -31,7 +31,8 @@ resource "aws_route_table" "csggbt-rt-private" {
 ## Subnet associations
 
 resource "aws_route_table_association" "csggbt-subnet-association-public" {
-  subnet_id      = aws_subnet.csggbt-subnet-public.id
+  for_each       = local.public_subnets
+  subnet_id      = each.value
   route_table_id = aws_route_table.csggbt-rt-public.id
 }
 
