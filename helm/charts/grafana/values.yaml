@@ -1,15 +1,12 @@
 ingress:
   enabled: true
   annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/group.name: csggbt
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
 
   path: /grafana/?(.*)
-  hosts:
-    - k8s-csggbt-72528fc5f8-1344277348.eu-west-1.elb.amazonaws.com
-
+  
 grafana.ini:
   server:
     root_url: http://localhost:3000/grafana # this host can be localhost
