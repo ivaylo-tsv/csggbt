@@ -56,7 +56,7 @@ spec:
   rules:
     - http:
         paths:
-        - path: /2048-game
+        - path: /
           pathType: Prefix
           backend:
             service:
