@@ -1,6 +1,6 @@
 apiVersion: v2
 name: argocd-umbrella
-description: Umbrella Chart which configure all core services for EKS cluster.
+description: Umbrella Chart for argo-cd
 version: 1.0.0
 dependencies:
   - name: argo-cd
