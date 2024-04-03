@@ -13,7 +13,3 @@ grafana:
   hosts: 
     - k8s-csggbt-72528fc5f8-1344277348.eu-west-1.elb.amazonaws.com
   pathType: Prefix
-
-  grafana.ini:
-    server:
-      root_url: http://k8s-csggbt-72528fc5f8-1344277348.eu-west-1.elb.amazonaws.com/grafana
