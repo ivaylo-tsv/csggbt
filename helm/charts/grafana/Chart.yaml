@@ -7,4 +7,5 @@ dependencies:
     version: 7.3.7
     repository: https://grafana.github.io/helm-charts/
     alias: grafana
+    condition: grafana.enabled
 
