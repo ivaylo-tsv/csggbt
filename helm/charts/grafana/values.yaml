@@ -10,6 +10,4 @@ grafana:
       alb.ingress.kubernetes.io/target-type: ip
 
   path: /grafana
-  hosts: 
-    - k8s-csggbt-72528fc5f8-1344277348.eu-west-1.elb.amazonaws.com
   pathType: Prefix
