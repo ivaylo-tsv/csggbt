@@ -3,7 +3,7 @@ grafana:
   grafana.ini:
     server:
       domain: k8s-csggbt-72528fc5f8-1344277348.eu-west-1.elb.amazonaws.com
-      root_url: "%(protocol)s://%(domain)s/grafana"
+      root_url: "k8s-csggbt-72528fc5f8-1344277348.eu-west-1.elb.amazonaws.com/grafana"
       serve_from_sub_path: true
 
 
