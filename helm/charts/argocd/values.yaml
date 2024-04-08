@@ -7,8 +7,8 @@ argocd:
   applicationSet:
     enabled: false
   crds:
-    install: true
-    keep: true 
+    install: false
+    keep: false 
   server: 
     extraArgs:
       - --insecure
