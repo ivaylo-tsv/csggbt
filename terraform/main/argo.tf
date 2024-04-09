@@ -21,6 +21,7 @@ resource "helm_release" "argocd-apps" {
 }
 
 resource "helm_release" "argocd" {
+  depends_on = [helm_release.lbc]
 
   name              = "argo-cd"
   chart             = "../../helm/charts/argocd"

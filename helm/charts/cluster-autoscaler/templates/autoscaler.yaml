@@ -1,12 +1,12 @@
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    k8s-addon: cluster-autoscaler.addons.k8s.io
-    k8s-app: cluster-autoscaler
-  name: cluster-autoscaler
-  namespace: kube-system
+# ---
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   labels:
+#     k8s-addon: cluster-autoscaler.addons.k8s.io
+#     k8s-app: cluster-autoscaler
+#   name: cluster-autoscaler
+#   namespace: kube-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -145,13 +145,6 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       serviceAccountName: cluster-autoscaler
-      tolerations:
-        - effect: NoSchedule
-          operator: "Equal"
-          value: "true"
-          key: node-role.kubernetes.io/control-plane
-      nodeSelector:
-        kubernetes.io/role: control-plane
       containers:
         - image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.26.2
           name: cluster-autoscaler
@@ -168,7 +161,8 @@ spec:
             - --stderrthreshold=info
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
-            - --nodes={{ node_asg_min }}:{{ node_asg_max }}:{{ name }}
+            - --expander=least-waste
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/csggbt-eks-cluster
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt # /etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes

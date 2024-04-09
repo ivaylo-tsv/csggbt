@@ -72,15 +72,30 @@ resource "helm_release" "lbc" {
   }
 }
 
-# # Create a service account for Kubernetes Cluster Autoscaler:
+resource "helm_release" "eks_cluster_autoscaler" {
+  depends_on = [kubernetes_service_account.eks_cluster_autoscaler_sa]
 
-# resource "kubernetes_service_account" "eks_cluster_autoscaler_sa" {
-#   metadata {
-#     name      = "eks-cluster-autoscaler"
-#     namespace = "kube-system"
+  name              = "csggbt-eks-cluster-autoscaler"
+  chart             = "../../helm/charts/cluster-autoscaler"
+  namespace         = "kube-system"
+  dependency_update = true
 
-#     annotations = {
-#       "eks.amazonaws.com/role-arn" = aws_iam_role.eks_cluster_autoscaler_iam_role.arn
-#     }
-#   }
-# }
+  values = []
+
+  lifecycle {
+    ignore_changes = all
+  }
+}
+
+# Create a service account for Kubernetes Cluster Autoscaler:
+
+resource "kubernetes_service_account" "eks_cluster_autoscaler_sa" {
+  metadata {
+    name      = "cluster-autoscaler"
+    namespace = "kube-system"
+
+    annotations = {
+      "eks.amazonaws.com/role-arn" = aws_iam_role.eks_cluster_autoscaler_iam_role.arn
+    }
+  }
+}
