@@ -5,10 +5,11 @@ resource "kubernetes_namespace" "argocd" {
   depends_on = [module.eks]
 }
 
-resource "helm_release" "argocd-crds" {
+resource "helm_release" "argocd-apps" {
+  depends_on = [helm_release.argocd]
 
-  name              = "argo-cd-crds"
-  chart             = "../../helm/charts/argocd-crds"
+  name              = "argo-cd-apps"
+  chart             = "../../helm/charts/argocd-apps"
   namespace         = kubernetes_namespace.argocd.metadata[0].name
   dependency_update = true
 
@@ -20,7 +21,6 @@ resource "helm_release" "argocd-crds" {
 }
 
 resource "helm_release" "argocd" {
-  depends_on = [helm_release.argocd-crds]
 
   name              = "argo-cd"
   chart             = "../../helm/charts/argocd"

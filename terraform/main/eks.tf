@@ -71,3 +71,16 @@ resource "helm_release" "lbc" {
     ignore_changes = all
   }
 }
+
+# # Create a service account for Kubernetes Cluster Autoscaler:
+
+# resource "kubernetes_service_account" "eks_cluster_autoscaler_sa" {
+#   metadata {
+#     name      = "eks-cluster-autoscaler"
+#     namespace = "kube-system"
+
+#     annotations = {
+#       "eks.amazonaws.com/role-arn" = aws_iam_role.eks_cluster_autoscaler_iam_role.arn
+#     }
+#   }
+# }

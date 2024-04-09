@@ -1,4 +1,0 @@
-apiVersion: v2
-name: argocd-crds
-version: 1.0.0
-description: Install argoCD CRDs

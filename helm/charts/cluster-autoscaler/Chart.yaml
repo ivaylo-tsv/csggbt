@@ -1,0 +1,4 @@
+apiVersion: v2
+name: cluster-autoscaler
+version: 1.0.0
+description: Install EKS Cluster autoscaler 

@@ -1,0 +1,51 @@
+argocd-apps:
+  enabled: true
+  applications: 
+    2048-game:
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      project: default
+      sources:
+        - repoURL: https://github.com/ivaylo-tsv/csggbt.git
+          targetRevision: HEAD
+          path: manifests/2048-game/
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: game-2048
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+    grafana:
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      project: default
+      sources:
+        - repoURL: https://github.com/ivaylo-tsv/csggbt.git
+          targetRevision: HEAD
+          path: helm/charts/grafana/
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: grafana
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+    csggbt-cluster-autoscaler:
+      namespace: kube-system
+      additionalLabels: {}
+      additionalAnnotations: {}
+      project: default
+      sources:
+        - repoURL: https://github.com/ivaylo-tsv/csggbt.git
+          targetRevision: HEAD
+          path: helm/charts/cluster-autoscaler/
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: kube-system
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
