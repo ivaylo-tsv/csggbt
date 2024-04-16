@@ -31,7 +31,7 @@ resource "aws_iam_policy_attachment" "eks_load_balancer_controller_policy_attach
   policy_arn = aws_iam_policy.lbc.arn
 }
 
-## Create a IAM Role for the EKS Cluster Autoscaler:
+## Create a IAM resources for the EKS Cluster Autoscaler:
 
 resource "aws_iam_role" "eks_cluster_autoscaler_iam_role" {
   name = "EKSClusterAutoscalerRole"

@@ -33,18 +33,18 @@ argocd-apps:
         automated:
           prune: true
           selfHeal: true
-    csggbt-cluster-autoscaler:
-      namespace: kube-system
+    app-of-apps:
+      namespace: argocd
       additionalLabels: {}
       additionalAnnotations: {}
       project: default
       sources:
         - repoURL: https://github.com/ivaylo-tsv/csggbt.git
           targetRevision: HEAD
-          path: helm/charts/cluster-autoscaler/
+          path: helm/manifests/
       destination:
         server: https://kubernetes.default.svc
-        namespace: kube-system
+        namespace: default
       syncPolicy:
         automated:
           prune: true

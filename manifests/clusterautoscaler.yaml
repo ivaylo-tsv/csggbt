@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clusterautoscaler
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: https://github.com/username/repo
+    targetRevision: HEAD
+    ref: here
+  - repoURL: https://kubernetes.github.io/autoscaler
+    chart: cluster-autoscaler
+    targetRevision: 9.29.1
+    helm:
+      values: |         
+        autoDiscovery:
+          # cloudProviders `aws`, `gce`, `azure`, `magnum` and `clusterapi` `oci-oke` are supported by auto-discovery at this time
+          # AWS: Set tags as described in https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md#auto-discovery-setup
+        
+          clusterName:  your_cluster_name
+        
+          # autoDiscovery.tags -- ASG tags to match, run through `tpl`.
+          tags:
+            - k8s.io/cluster-autoscaler/enabled
+            - k8s.io/cluster-autoscaler/{{ .Values.autoDiscovery.clusterName }}
+            - kubernetes.io/cluster/{{ .Values.autoDiscovery.clusterName }}
+        
+          # autoDiscovery.roles -- Magnum node group roles to match.
+          roles:
+            - worker
+        
+        
+        # AWS_ACCESS_KEY
+        awsAccessKeyID: ""
+
+        
+        # AWS_REGION
+        awsRegion: your_region
+        
+        # AWS_SECRET_ACCESS_KEY
+        awsSecretAccessKey: ""
+
+        # CLOUD_PROVIDER
+        cloudProvider: aws
+
+        sslCertPath: /etc/kubernetes/pki/ca.crt
+
+        rbac:
+        ## If true, create & use RBAC resources
+        ##
+          create: true
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

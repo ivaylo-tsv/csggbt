@@ -36,16 +36,16 @@ resource "helm_release" "argocd" {
 }
 
 
-resource "helm_release" "app-of-apps" {
-  depends_on = [helm_release.argocd]
+# resource "helm_release" "app-of-apps" {
+#   depends_on = [helm_release.argocd]
 
-  name              = "app-of-apps"
-  chart             = "../../helm/charts/root-app"
-  dependency_update = true
+#   name              = "app-of-apps"
+#   chart             = "../../helm/charts/root-app"
+#   dependency_update = true
 
-  values = []
+#   values = []
 
-  lifecycle {
-    ignore_changes = all
-  }
-}
+#   lifecycle {
+#     ignore_changes = all
+#   }
+# }

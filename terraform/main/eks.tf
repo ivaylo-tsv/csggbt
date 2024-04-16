@@ -31,6 +31,7 @@ module "eks" {
       instance_types = ["t3.large"]
       capacity_type  = "ON_DEMAND"
       ami_type       = "BOTTLEROCKET_x86_64"
+
     }
   }
 
@@ -72,20 +73,20 @@ resource "helm_release" "lbc" {
   }
 }
 
-resource "helm_release" "eks_cluster_autoscaler" {
-  depends_on = [kubernetes_service_account.eks_cluster_autoscaler_sa]
+# resource "helm_release" "eks_cluster_autoscaler" {
+#   depends_on = [kubernetes_service_account.eks_cluster_autoscaler_sa]
 
-  name              = "csggbt-eks-cluster-autoscaler"
-  chart             = "../../helm/charts/cluster-autoscaler"
-  namespace         = "kube-system"
-  dependency_update = true
+#   name              = "csggbt-eks-cluster-autoscaler"
+#   chart             = "../../helm/charts/cluster-autoscaler"
+#   namespace         = "kube-system"
+#   dependency_update = true
 
-  values = []
+#   values = []
 
-  lifecycle {
-    ignore_changes = all
-  }
-}
+#   lifecycle {
+#     ignore_changes = all
+#   }
+# }
 
 # Create a service account for Kubernetes Cluster Autoscaler:
 
