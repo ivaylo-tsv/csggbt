@@ -41,7 +41,7 @@ argocd-apps:
       sources:
         - repoURL: https://github.com/ivaylo-tsv/csggbt.git
           targetRevision: HEAD
-          path: manifests/
+          path: app-of-apps/
       destination:
         server: https://kubernetes.default.svc
         namespace: default
