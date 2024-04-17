@@ -17,5 +17,9 @@ argocd:
       url: https://github.com/ivaylo-tsv/csggbt.git
       type: github
       name: csggbt-repo 
+  configs:
+    secret:
+      argocdServerAdminPassword: "$2y$10$FrWT32rBLlWgECZpiokJAOCYpWDEhMNr2OqKOgHuevpPg/4eEsp5C" # csggbt-argocd-password
+
 
         
