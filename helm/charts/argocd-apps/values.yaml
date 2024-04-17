@@ -1,22 +1,6 @@
 argocd-apps:
   enabled: true
   applications: 
-    # 2048-game:
-    #   namespace: argocd
-    #   additionalLabels: {}
-    #   additionalAnnotations: {}
-    #   project: default
-    #   sources:
-    #     - repoURL: https://github.com/ivaylo-tsv/csggbt.git
-    #       targetRevision: HEAD
-    #       path: manifests/2048-game/
-    #   destination:
-    #     server: https://kubernetes.default.svc
-    #     namespace: game-2048
-      # syncPolicy:
-      #   automated:
-      #     prune: true
-      #     selfHeal: true
     grafana:
       namespace: argocd
       additionalLabels: {}
