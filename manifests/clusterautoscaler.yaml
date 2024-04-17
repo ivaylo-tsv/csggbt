@@ -13,7 +13,6 @@ spec:
   sources:
   - repoURL: git@github.com:ivaylo-tsv/csggbt.git
     targetRevision: HEAD
-    ref: here
   - repoURL: https://kubernetes.github.io/autoscaler
     chart: cluster-autoscaler
     targetRevision: 9.29.1
