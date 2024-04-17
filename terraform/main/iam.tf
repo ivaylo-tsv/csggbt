@@ -63,3 +63,16 @@ resource "aws_iam_policy_attachment" "eks_cluster_autoscaler_iam_policy_attachme
   roles      = [aws_iam_role.eks_cluster_autoscaler_iam_role.name]
   policy_arn = aws_iam_policy.eks_cluster_autoscaler_iam_policy.arn
 }
+
+## EKS Node Group additional policy 
+
+resource "aws_iam_policy" "node_group_additional" {
+  name = "csggbt-eks-node-group-additional"
+  policy = file("../../policies/eks_node_group_additional_policy.json")
+  description = "Additional permissions for EKS Node Group"
+
+  tags = merge(
+    { "Name": "csggbt-eks-node-group-additional"},
+    var.tags
+  )
+}

@@ -32,6 +32,10 @@ module "eks" {
       capacity_type  = "ON_DEMAND"
       ami_type       = "BOTTLEROCKET_x86_64"
 
+      iam_role_additional_policies = {
+        "asg": "${aws_iam_policy.node_group_additional.arn}"
+      }
+
     }
   }
 
@@ -90,13 +94,13 @@ resource "helm_release" "lbc" {
 
 # Create a service account for Kubernetes Cluster Autoscaler:
 
-resource "kubernetes_service_account" "eks_cluster_autoscaler_sa" {
-  metadata {
-    name      = "cluster-autoscaler"
-    namespace = "kube-system"
+# resource "kubernetes_service_account" "eks_cluster_autoscaler_sa" {
+#   metadata {
+#     name      = "cluster-autoscaler"
+#     namespace = "kube-system"
 
-    annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.eks_cluster_autoscaler_iam_role.arn
-    }
-  }
-}
+#     annotations = {
+#       "eks.amazonaws.com/role-arn" = aws_iam_role.eks_cluster_autoscaler_iam_role.arn
+#     }
+#   }
+# }
