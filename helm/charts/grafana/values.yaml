@@ -10,4 +10,5 @@ ingress:
   hosts:
     - "k8s-csggbt-72528fc5f8-774864793.eu-west-1.elb.amazonaws.com"
   path: "/grafana"
-
+service:
+  port: 3000
