@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: 2048-game
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: grafana
+    namespace: 2048-game
     server: https://kubernetes.default.svc
   project: default
   sources:
   - repoURL: https://github.com/ivaylo-tsv/csggbt.git
     targetRevision: HEAD
     ref: here
-    path: helm/charts/grafana/
+    path: argo/manifests/2048-game/

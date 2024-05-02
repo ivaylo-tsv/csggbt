@@ -9,7 +9,7 @@ resource "helm_release" "argocd-apps" {
   depends_on = [helm_release.argocd]
 
   name              = "argo-cd-apps"
-  chart             = "../../helm/charts/argocd-apps"
+  chart             = "../../argo/helm/charts/argocd-apps"
   namespace         = kubernetes_namespace.argocd.metadata[0].name
   dependency_update = true
 
@@ -24,7 +24,7 @@ resource "helm_release" "argocd" {
   depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
 
   name              = "argo-cd"
-  chart             = "../../helm/charts/argocd"
+  chart             = "../../argo/helm/charts/argocd"
   namespace         = kubernetes_namespace.argocd.metadata[0].name
   dependency_update = true
 

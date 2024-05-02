@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: 2048-game
+  name: aws-load-balancer-controller
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: 2048-game
+    namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   sources:
   - repoURL: https://github.com/ivaylo-tsv/csggbt.git
     targetRevision: HEAD
     ref: here
-    path: manifests/2048-game/
+    path: argo/helm/charts/lbc/

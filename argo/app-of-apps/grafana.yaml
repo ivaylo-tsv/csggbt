@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-load-balancer-controller
+  name: grafana
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: kube-system
+    namespace: grafana
     server: https://kubernetes.default.svc
   project: default
   sources:
   - repoURL: https://github.com/ivaylo-tsv/csggbt.git
     targetRevision: HEAD
     ref: here
-    path: helm/charts/lbc/
+    path: argo/helm/charts/grafana/
