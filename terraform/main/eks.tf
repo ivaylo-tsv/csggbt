@@ -62,17 +62,17 @@ resource "kubernetes_service_account" "aws_load_balancer_controller_sa" {
   }
 }
 
-resource "helm_release" "lbc" {
-  depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
+# resource "helm_release" "lbc" {
+#   depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
 
-  name              = "lbc"
-  chart             = "../../helm/charts/lbc"
-  namespace         = "kube-system"
-  dependency_update = true
+#   name              = "lbc"
+#   chart             = "../../helm/charts/lbc"
+#   namespace         = "kube-system"
+#   dependency_update = true
 
-  values = []
+#   values = []
 
-  lifecycle {
-    ignore_changes = all
-  }
-}
+#   lifecycle {
+#     ignore_changes = all
+#   }
+# }

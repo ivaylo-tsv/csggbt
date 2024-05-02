@@ -1,22 +1,6 @@
 argocd-apps:
   enabled: true
   applications: 
-    grafana:
-      namespace: argocd
-      additionalLabels: {}
-      additionalAnnotations: {}
-      project: default
-      sources:
-        - repoURL: https://github.com/ivaylo-tsv/csggbt.git
-          targetRevision: HEAD
-          path: helm/charts/grafana/
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: grafana
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
     app-of-apps:
       namespace: argocd
       additionalLabels: {}

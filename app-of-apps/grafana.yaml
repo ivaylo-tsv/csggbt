@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: grafana
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: https://github.com/ivaylo-tsv/csggbt.git
+    targetRevision: HEAD
+    ref: here
+    path: helm/charts/grafana/

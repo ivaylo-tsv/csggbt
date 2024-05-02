@@ -9,25 +9,25 @@ variable "tags" {
 
 variable "vpc_id" {
   type = string
-  default = "vpc-09e0ab1f392ec9243"
+  default = "vpc-043d2cfa50af1d609"
 }
 
 variable "subnet-public-1" {
   type = string
-  default = "subnet-0c4a1034bd7129f63"
+  default = "subnet-04ab6fbe3438af406"
 }
 
 variable "subnet-public-2" {
   type = string
-  default = "subnet-013cbf36fe9fc8e9a"
+  default = "subnet-03fb314300934f19c"
 }
 
 variable "subnet-private-1" {
   type = string
-  default = "subnet-0e3059baeec15f805"
+  default = "subnet-07f7cf49834906fbc"
 }
 
 variable "subnet-private-2" {
   type = string
-  default = "subnet-05be528fe4e96dcba"
+  default = "subnet-07b5db6eca7261c05"
 }

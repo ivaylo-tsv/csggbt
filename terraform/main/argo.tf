@@ -21,7 +21,7 @@ resource "helm_release" "argocd-apps" {
 }
 
 resource "helm_release" "argocd" {
-  depends_on = [helm_release.lbc]
+  depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
 
   name              = "argo-cd"
   chart             = "../../helm/charts/argocd"
