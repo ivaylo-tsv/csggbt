@@ -109,7 +109,7 @@ argocd:
       ## Can be of type NodePort or ClusterIP depending on which mode you are running.
       ## Instance mode needs type NodePort, IP mode needs type ClusterIP
       ## Ref: https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/how-it-works/#ingress-traffic
-      serviceType: NodePort
+      serviceType: ClusterIP
 
 
         
