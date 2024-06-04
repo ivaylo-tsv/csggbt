@@ -6,7 +6,6 @@ resource "kubernetes_namespace" "argocd" {
 }
 
 resource "helm_release" "argocd-apps" {
-  depends_on = [helm_release.argocd]
 
   name              = "argo-cd-apps"
   chart             = "../../argo/helm/charts/argocd-apps"
