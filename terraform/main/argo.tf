@@ -5,33 +5,33 @@ resource "kubernetes_namespace" "argocd" {
   depends_on = [module.eks]
 }
 
-resource "helm_release" "argocd-apps" {
-  depends_on = [helm_release.argocd]
+# resource "helm_release" "argocd-apps" {
 
-  name              = "argo-cd-apps"
-  chart             = "../../argo/helm/charts/argocd-apps"
-  namespace         = kubernetes_namespace.argocd.metadata[0].name
-  dependency_update = true
 
-  values = []
+#   name              = "argo-cd-apps"
+#   chart             = "../../argo/helm/charts/argocd-apps"
+#   namespace         = kubernetes_namespace.argocd.metadata[0].name
+#   dependency_update = true
 
-  lifecycle {
-    ignore_changes = all
-  }
-}
+#   values = []
 
-resource "helm_release" "argocd" {
-  depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
+#   lifecycle {
+#     ignore_changes = all
+#   }
+# }
 
-  name              = "argo-cd"
-  chart             = "../../argo/helm/charts/argocd"
-  namespace         = kubernetes_namespace.argocd.metadata[0].name
-  dependency_update = true
+# resource "helm_release" "argocd" {
+#   depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
 
-  values = []
+#   name              = "argo-cd"
+#   chart             = "../../argo/helm/charts/argocd"
+#   namespace         = kubernetes_namespace.argocd.metadata[0].name
+#   dependency_update = true
 
-  lifecycle {
-    ignore_changes = all
-  }
-}
+#   values = []
+
+#   lifecycle {
+#     ignore_changes = all
+#   }
+# }
 
