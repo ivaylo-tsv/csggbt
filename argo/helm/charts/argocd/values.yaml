@@ -74,12 +74,14 @@ argocd:
     # -- Defines which ingress controller will implement the resource
     ingressClassName: alb
 
+    host: [argocd.k8s-csggbt-72528fc5f8-966392172.eu-west-1.elb.amazonaws.com]
+
     # -- Argo CD server hostname
     # @default -- `""` (defaults to global.domain)
-    hostname: k8s-csggbt-72528fc5f8-966392172.eu-west-1.elb.amazonaws.com
+    # hostname: argocd.k8s-csggbt-72528fc5f8-966392172.eu-west-1.elb.amazonaws.com
 
     # -- The path to Argo CD server
-    path: /argocd
+    # path: /argocd
 
     # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
     pathType: Prefix
@@ -98,14 +100,14 @@ argocd:
     # -- Additional ingress paths
     # @default -- `[]` (See [values.yaml])
     ## Note: Supports use of custom Helm templates
-    extraPaths: []
-      # - path: /*
-      #   pathType: Prefix
-      #   backend:
-      #     service:
-      #       name: ssl-redirect
-      #       port:
-      #         name: use-annotation
+    extraPaths: 
+      - path: /argocd
+        pathType: Prefix
+        backend:
+          service:
+            name: argo-cd-argocd-server
+            port:
+              name: 8080
 
     # -- Additional ingress rules
     # @default -- `[]` (See [values.yaml])
@@ -135,9 +137,9 @@ argocd:
       # -- Backend protocol version for the AWS ALB gRPC service
       ## This tells AWS to send traffic from the ALB using gRPC.
       ## For more information: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings
-      backendProtocolVersion: GRPC
+      backendProtocolVersion: HTTP2
       # -- Service type for the AWS ALB gRPC service
       ## Can be of type NodePort or ClusterIP depending on which mode you are running.
       ## Instance mode needs type NodePort, IP mode needs type ClusterIP
       ## Ref: https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/how-it-works/#ingress-traffic
-      serviceType: ClusterUP
+      serviceType: NodePort 
