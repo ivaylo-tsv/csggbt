@@ -5,20 +5,20 @@ resource "kubernetes_namespace" "argocd" {
   depends_on = [module.eks]
 }
 
-# resource "helm_release" "argocd-apps" {
+resource "helm_release" "argocd-apps" {
 
 
-#   name              = "argo-cd-apps"
-#   chart             = "../../argo/helm/charts/argocd-apps"
-#   namespace         = kubernetes_namespace.argocd.metadata[0].name
-#   dependency_update = true
+  name              = "argo-cd-apps"
+  chart             = "../../argo/helm/charts/argocd-apps"
+  namespace         = kubernetes_namespace.argocd.metadata[0].name
+  dependency_update = true
 
-#   values = []
+  values = []
 
-#   lifecycle {
-#     ignore_changes = all
-#   }
-# }
+  lifecycle {
+    ignore_changes = all
+  }
+}
 
 # resource "helm_release" "argocd" {
 #   depends_on = [kubernetes_service_account.aws_load_balancer_controller_sa]
