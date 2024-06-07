@@ -2262,13 +2262,13 @@ server:
   # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
   ingressGrpc:
     # -- Enable an ingress resource for the Argo CD server for dedicated [gRPC-ingress]
-    enabled: false
+    enabled: true
     # -- Additional ingress annotations for dedicated [gRPC-ingress]
     annotations: {}
     # -- Additional ingress labels for dedicated [gRPC-ingress]
     labels: {}
     # -- Defines which ingress controller will implement the resource [gRPC-ingress]
-    ingressClassName: ""
+    ingressClassName: alb
 
     # -- Argo CD server hostname for dedicated [gRPC-ingress]
     # @default -- `""` (defaults to grpc.`server.ingress.hostname`)
