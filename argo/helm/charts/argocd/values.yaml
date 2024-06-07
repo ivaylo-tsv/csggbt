@@ -133,7 +133,7 @@ argocd:
     aws:
       # -- Backend protocol version for the AWS ALB gRPC service
       ## This tells AWS to send traffic from the ALB using gRPC.
-      ## For more information: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings
+      ## For more information: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-hx§z§ealth-checks.html#health-check-settings
       backendProtocolVersion: HTTP2
       # -- Service type for the AWS ALB gRPC service
       ## Can be of type NodePort or ClusterIP depending on which mode you are running.
