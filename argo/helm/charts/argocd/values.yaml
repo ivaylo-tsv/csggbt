@@ -58,13 +58,12 @@ argocd:
     enabled: true
     # -- Specific implementation for ingress controller. One of `generic`, `aws` or `gke`
     ## Additional configuration might be required in related configuration sections
-    controller: generic
+    controller: aws
     # -- Additional ingress labels
     labels: {}
     # -- Additional ingress annotations
     ## Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-1-ssl-passthrough
     annotations: 
-      kubernetes.io/ingress.class: alb
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/group.name: csggbt
@@ -79,7 +78,7 @@ argocd:
     hostname: ""
 
     # -- The path to Argo CD server
-    # path: /argocd
+    path: /argocd
 
     # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
     pathType: Prefix
@@ -98,14 +97,14 @@ argocd:
     # -- Additional ingress paths
     # @default -- `[]` (See [values.yaml])
     ## Note: Supports use of custom Helm templates
-    extraPaths: 
-      - path: /argocd
-        pathType: Prefix
-        backend:
-          service:
-            name: argo-cd-argocd-server
-            port:
-              name: 443
+    # extraPaths: 
+    #   - path: /argocd
+    #     pathType: Prefix
+    #     backend:
+    #       service:
+    #         name: argo-cd-argocd-server
+    #         port:
+    #           name: 443
 
     # -- Additional ingress rules
     # @default -- `[]` (See [values.yaml])
