@@ -74,11 +74,9 @@ argocd:
     # -- Defines which ingress controller will implement the resource
     ingressClassName: alb
 
-    host: [argocd.k8s-csggbt-72528fc5f8-966392172.eu-west-1.elb.amazonaws.com]
-
     # -- Argo CD server hostname
     # @default -- `""` (defaults to global.domain)
-    # hostname: argocd.k8s-csggbt-72528fc5f8-966392172.eu-west-1.elb.amazonaws.com
+    hostname: ""
 
     # -- The path to Argo CD server
     # path: /argocd
@@ -107,7 +105,7 @@ argocd:
           service:
             name: argo-cd-argocd-server
             port:
-              name: 8080
+              name: 443
 
     # -- Additional ingress rules
     # @default -- `[]` (See [values.yaml])
@@ -142,4 +140,69 @@ argocd:
       ## Can be of type NodePort or ClusterIP depending on which mode you are running.
       ## Instance mode needs type NodePort, IP mode needs type ClusterIP
       ## Ref: https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/how-it-works/#ingress-traffic
-      serviceType: NodePort 
+      serviceType: ClusterIP
+
+  # Dedicated gRPC ingress for ingress controllers that supports only single backend protocol per Ingress resource
+  # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
+  ingressGrpc:
+    # -- Enable an ingress resource for the Argo CD server for dedicated [gRPC-ingress]
+    enabled: true 
+    # -- Additional ingress annotations for dedicated [gRPC-ingress]
+    annotations: {}
+    # -- Additional ingress labels for dedicated [gRPC-ingress]
+    labels: {}
+    # -- Defines which ingress controller will implement the resource [gRPC-ingress]
+    ingressClassName: alb
+
+    # -- Argo CD server hostname for dedicated [gRPC-ingress]
+    # @default -- `""` (defaults to grpc.`server.ingress.hostname`)
+    hostname: ""
+
+    # -- Argo CD server ingress path for dedicated [gRPC-ingress]
+    path: /
+
+    # -- Ingress path type for dedicated [gRPC-ingress]. One of `Exact`, `Prefix` or `ImplementationSpecific`
+    pathType: Prefix
+
+    # -- Enable TLS configuration for the hostname defined at `server.ingressGrpc.hostname`
+    ## TLS certificate will be retrieved from a TLS secret with name: `argocd-server-grpc-tls`
+    tls: false
+
+    # -- The list of additional hostnames to be covered by ingress record
+    # @default -- `[]` (See [values.yaml])
+    extraHosts: []
+      # - name: grpc.argocd.example.com
+      #   path: /
+
+    # -- Additional ingress paths for dedicated [gRPC-ingress]
+    # @default -- `[]` (See [values.yaml])
+    ## Note: Supports use of custom Helm templates
+    extraPaths: []
+      # - path: /*
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: ssl-redirect
+      #       port:
+      #         name: use-annotation
+
+    # -- Additional ingress rules
+    # @default -- `[]` (See [values.yaml])
+    ## Note: Supports use of custom Helm templates
+    extraRules: []
+      # - http:
+      #     paths:
+      #     - path: /
+      #       pathType: Prefix
+      #       backend:
+      #         service:
+      #           name: '{{ include "argo-cd.server.fullname" . }}'
+      #           port:
+      #             name: '{{ .Values.server.service.servicePortHttpName }}'
+
+    # -- Additional TLS configuration for dedicated [gRPC-ingress]
+    # @default -- `[]` (See [values.yaml])
+    extraTls: []
+      # - secretName: your-certificate-name
+      #   hosts:
+      #     - argocd.example.com
