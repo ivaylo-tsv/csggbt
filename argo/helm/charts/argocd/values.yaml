@@ -58,7 +58,7 @@ argocd:
     enabled: true
     # -- Specific implementation for ingress controller. One of `generic`, `aws` or `gke`
     ## Additional configuration might be required in related configuration sections
-    controller: aws
+    controller: generic
     # -- Additional ingress labels
     labels: {}
     # -- Additional ingress annotations
