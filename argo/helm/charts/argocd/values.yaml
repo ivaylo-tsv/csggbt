@@ -2157,7 +2157,7 @@ argocd:
         alb.ingress.kubernetes.io/group.name: csggbt
         alb.ingress.kubernetes.io/backend-protocol: HTTPS
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:079253988715:certificate/4bf87ad4-689f-4d05-93ab-64e78aa709d1
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:079253988715:certificate/22334e08-0b3f-439d-9ab9-a00066297917
         # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
