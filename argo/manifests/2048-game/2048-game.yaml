@@ -63,3 +63,4 @@ spec:
               name: service-2048
               port:
                 number: 80
+  host: k8s-csggbt-72528fc5f8-1347423113.eu-west-1.elb.amazonaws.com
