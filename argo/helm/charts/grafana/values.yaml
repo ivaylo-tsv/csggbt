@@ -1,15 +1,15 @@
 grafana:
   enabled: true 
-  grafana.ini:
-    server:
-      root_url: "%(protocol)s://%(domain)s/grafana"
-      serve_from_sub_path: true
-ingress:
-  enabled: false
-  path: "/grafana"
-  annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/group.name: csggbt
+#   grafana.ini:
+#     server:
+#       root_url: "%(protocol)s://%(domain)s/grafana"
+#       serve_from_sub_path: true
+# ingress:
+#   enabled: false
+#   path: "/grafana"
+#   annotations:
+#     kubernetes.io/ingress.class: alb
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     alb.ingress.kubernetes.io/target-type: ip
+#     alb.ingress.kubernetes.io/group.name: csggbt
 
