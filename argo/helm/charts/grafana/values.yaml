@@ -1,5 +1,7 @@
 grafana:
   enabled: true 
+  ingress:
+    enabled: false
 #   grafana.ini:
 #     server:
 #       root_url: "%(protocol)s://%(domain)s/grafana"
