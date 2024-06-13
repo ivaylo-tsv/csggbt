@@ -2156,6 +2156,7 @@ argocd:
         alb.ingress.kubernetes.io/target-type: "ip" 
         alb.ingress.kubernetes.io/group.name: csggbt-argo
         alb.ingress.kubernetes.io/backend-protocol: HTTPS
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]' 
         # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
@@ -2264,7 +2265,7 @@ argocd:
     # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
     ingressGrpc:
       # -- Enable an ingress resource for the Argo CD server for dedicated [gRPC-ingress]
-      enabled: true
+      enabled: false
       # -- Additional ingress annotations for dedicated [gRPC-ingress]
       annotations: {}
       # -- Additional ingress labels for dedicated [gRPC-ingress]
