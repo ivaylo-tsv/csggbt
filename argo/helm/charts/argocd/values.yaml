@@ -2157,7 +2157,7 @@ argocd:
         alb.ingress.kubernetes.io/group.name: csggbt
         alb.ingress.kubernetes.io/backend-protocol: HTTPS
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:079253988715:certificate/2227f7aa-69b1-4d24-b6a6-066ecd8667c4
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:079253988715:certificate/4ae74ea2-9fe9-42a3-ae1d-11c8d70a2bd7
         # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
@@ -2166,7 +2166,7 @@ argocd:
 
       # -- Argo CD server hostname
       # @default -- `""` (defaults to global.domain)
-      hostname: argo.csggbt.com
+      hostname: argo.test-cmp-srmp-service.click
 
       # -- The path to Argo CD server
       path: /argocd
