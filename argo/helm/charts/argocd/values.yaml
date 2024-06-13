@@ -2157,7 +2157,7 @@ argocd:
         alb.ingress.kubernetes.io/group.name: csggbt
         alb.ingress.kubernetes.io/backend-protocol: HTTPS
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:079253988715:certificate/22334e08-0b3f-439d-9ab9-a00066297917
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:079253988715:certificate/2227f7aa-69b1-4d24-b6a6-066ecd8667c4
         # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
@@ -2166,7 +2166,7 @@ argocd:
 
       # -- Argo CD server hostname
       # @default -- `""` (defaults to global.domain)
-      hostname: k8s-csggbt-72528fc5f8-1347423113.eu-west-1.elb.amazonaws.com
+      hostname: argo.csggbt.com
 
       # -- The path to Argo CD server
       path: /argocd
