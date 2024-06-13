@@ -40,27 +40,27 @@ spec:
   selector:
     app.kubernetes.io/name: app-2048
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  namespace: game-2048
-  name: ingress-2048
-  annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/group.name: csggbt
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   namespace: game-2048
+#   name: ingress-2048
+#   annotations:
+#     kubernetes.io/ingress.class: alb
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     alb.ingress.kubernetes.io/target-type: ip
+#     alb.ingress.kubernetes.io/group.name: csggbt
 
-spec:
-  ingressClassName: alb
-  rules:
-    - host: k8s-csggbt-72528fc5f8-1347423113.eu-west-1.elb.amazonaws.com
-      http:
-        paths:
-        - path: /game-2048
-          pathType: Prefix
-          backend:
-            service:
-              name: service-2048
-              port:
-                number: 80
+# spec:
+#   ingressClassName: alb
+#   rules:
+#     - host: k8s-csggbt-72528fc5f8-1347423113.eu-west-1.elb.amazonaws.com
+#       http:
+#         paths:
+#         - path: /game-2048
+#           pathType: Prefix
+#           backend:
+#             service:
+#               name: service-2048
+#               port:
+#                 number: 80
