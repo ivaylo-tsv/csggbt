@@ -2155,6 +2155,7 @@ argocd:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/target-type: "ip" 
         alb.ingress.kubernetes.io/group.name: csggbt-argo
+        alb.ingress.kubernetes.io/backend-protocol: HTTPS
         # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
